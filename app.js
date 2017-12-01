@@ -1,10 +1,7 @@
 var express = require('express');
 var path = require('path');
-var favicon = require('serve-favicon');
 
 var bodyParser = require('body-parser');
-
-var config = require('config.json')('./config/config.json');
 
 var fs = require('fs');
 
@@ -35,28 +32,22 @@ var accessLogStream = FileStreamRotator.getStream({
 app.use( morgan('dev', {stream: accessLogStream}));
 
 
-// routes module
-var msg_yellow_id = require('./routes/yellow_id/yellow_id');
-
-
-//console.log("My webpage start!");
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /public
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'dist')));
 
 
+// routes module
+var plusfriendAPI = require('./routes/plusfriend/index');
 
-// Yellow ID API server
-app.use('/yellow_id', msg_yellow_id);
+
+// Plusfriend API server
+app.use('/api/plusfriend', plusfriendAPI);
 
 
 // catch 404 and forward to error handler

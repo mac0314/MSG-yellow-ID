@@ -5,14 +5,15 @@ var router = express.Router();
  *          route             *
  ******************************/
 
-// https://github.com/plusfriend/auto_reply#51-home-keyboard-api
+// https://github.com/plusfriend/auto_reply
 // Home Keyboard API
-router.get(['/keyboard'], function(req, res, next){
+router.get('/keyboard', function(req, res, next){
 	var resultObject = new Object();
 
 	resultObject.type = "buttons";
 
-	//var buttonArray = ["1", "2", "3"];
+	// Button keyboard
+	//var buttonArray = ["안녕~", "신청", "뭘 도와주는데?"];
 	var buttonArray = new Array();
 
 	buttonArray.push("안녕~");
@@ -21,20 +22,15 @@ router.get(['/keyboard'], function(req, res, next){
 
 	resultObject.buttons = buttonArray;
 
-	var resultJson = JSON.stringify(resultObject);
-
-	res.send(resultJson);
+	res.json(resultObject);
 });
 
 // 메시지 수신 및 자동응답 API
-router.post(['/message'], function(req, res, next){
+router.post('/message', function(req, res, next){
 	var user_key = req.body.user_key;
 	var type = req.body.type;
 	var content = req.body.content;
 
-	//console.log("user_key : " + user_key);
-	//console.log("type : " + type);
-	//console.log("content : " + content);
 
 	var resultObject = new Object();
 	var messageObject = new Object();
@@ -43,6 +39,7 @@ router.post(['/message'], function(req, res, next){
 	var isThereLink = false;
 	var isThereNextMessage = false;
 
+	// TODO handle message data
 	if(content == "안녕~"){
 		text = "안녕하세요. ‘부모생각’입니다. ‘부모생각’은 부모/자녀 간 발생하는 상호작용(대화, 생신, 용돈, 선물 등) 전반을 케어하며 부모 자녀의 소통을 원활하게 해 친밀도를 증진시키는 서비스입니다.";
 	}else if(content == "뭘 도와주는데?"){
@@ -104,33 +101,28 @@ router.post(['/message'], function(req, res, next){
 		resultObject.keyboard = keyboardObject;
 	}
 
-	var resultJson = JSON.stringify(resultObject);
-
-	res.send(resultJson);
+	res.json(resultObject);
 });
 
 
 // 친구 추가 알림 API
-router.post(['/friend'], function(req, res, next){
+router.post('/friend', function(req, res, next){
 	var user_key = req.body.user_key;
-	//console.log("user_key : " + user_key);
 
 	res.send("SUCCESS");
 });
 
 // 친구 차단 알림 API
-router.delete(['/friend/:user_key'], function(req, res, next){
+router.delete('/friend/:user_key', function(req, res, next){
 	var user_key = req.params.user_key;
-	//console.log("user_key : " + user_key);
 
 	res.send("SUCCESS");
 });
 
 
 // 채팅방 나가기
-router.delete(['/chat_room/:user_key'], function(req, res, next){
+router.delete('/chat_room/:user_key', function(req, res, next){
 	var user_key = req.params.user_key;
-	//console.log("user_key : " + user_key);
 
 	res.send("SUCCESS");
 });

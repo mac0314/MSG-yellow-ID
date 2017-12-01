@@ -1,31 +1,28 @@
 {
-  "name": "yellow-id-tutorial",
-  "version": "0.8.5",
-  "description": "yellow id api server",
+  "name": "plusfriend-tutorial",
+  "version": "1.0.0",
+  "description": "node express plusfriend api server",
   "scripts": {
     "start": "node ./bin/www"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mac0314/Yellow-ID-Tutorial.git"
+    "url": "git+https://github.com/mac0314/PPlusfriend-Tutorial.git"
   },
   "author": "Youngmin Kim",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mac0314/Yellow-ID-Tutorial/issues"
+    "url": "https://github.com/mac0314/Plusfriend-Tutorial/issues"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
-    "config.json": "0.0.4",
     "debug": "~2.2.0",
-    "ejs": "~2.4.1",
+    "ejs": "^2.5.5",
     "express": "~4.13.4",
     "file-stream-rotator": "0.0.7",
     "moment": "^2.17.1",
     "morgan": "~1.7.0",
-    "request": "^2.75.0",
-    "serve-favicon": "^2.3.0",
-    "xml2js": "^0.4.17",
+    "xml2js": "^0.4.19",
     "xmlbuilder": "^8.2.2"
   }
 }
